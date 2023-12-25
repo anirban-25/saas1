@@ -19,39 +19,15 @@ const ConversationPage = () => {
   function handleTextChange(event: ChangeEvent<HTMLInputElement>) {
     setText(event.target.value);
   }
-  // async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   await fetch("api/conversation", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/jso  n",
-  //     },
-  //     body: JSON.stringify({
-  //       text: text,
-  //     }),
-  //   }).then(async (response: any) => {
-  //     const reader = response.body?.getReader();
-  //     while (true) {
-  //       const { done, value } = await reader?.read();
-  //       if (done) {
-  //         break;
-  //       }
-  //       var currentChunk = new TextDecoder().decode(value);
-  //       setOpenAIResponse((prev) => prev + currentChunk);
-  //     }
-  //   });
-  // }
-
-  //mixtral endpoint fetch
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    await fetch("api/mixtral", {
+    await fetch("api/conversation", {
       method: "POST",
       headers: {
         "Content-Type": "application/jso  n",
       },
       body: JSON.stringify({
-        messages: text,
+        text: text,
       }),
     }).then(async (response: any) => {
       const reader = response.body?.getReader();
